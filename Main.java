@@ -1,26 +1,36 @@
-class Myrunnable implements Runnable{
-  Myrunnable(){
-    System.out.println("Myrunnable() is called");
-  }
-  public void run(){
-    for(int i=0;i<3;i++){
-      System.out.println("Child thread");
-      try{
-        Thread.sleep(1000);
-      }catch(InterruptedException e){}
-    }
-  }
-}
+
 class Main{
-  public static void main(String[] args) {
-    Thread t=new Thread(new Myrunnable(),"Child thread");
-    t.start();
-    for(int i=0;i<3;i++){
-      System.out.println("Main thread");
-      try{
-        Thread.sleep(2000);
-      }catch(InterruptedException e){}
+  void frequency(String x){
+    String s=x.toLowerCase();
+    int count=0,j=0;
+    boolean[] b=new boolean[100];
+    char[] store=new char[100];
+    for(int i=0;i<s.length();i++){
+      char ch=s.charAt(i);
+      store[j]=ch;
+      j++;
     }
-    
+    for(int i=0;i<s.length();i++){
+      if(b[i]==false)
+      count++;
+      for(int k=i+1;k<s.length();k++){
+        if(store[i]==store[k] && b[k]==false){
+          count++;
+          b[k]=true;
+        }
+      }
+      
+      if(store[i]==' ' && b[i]==false){
+        System.out.println("space"+" "+count);
+      }
+      else if(b[i]==false && store[i]!=' ')
+      System.out.println(store[i]+" "+count);
+      count=0;
+    }
+  }
+  public static void main(String[] args) {
+    Main m=new Main();
+    m.frequency("HelloHHello Sibu nandy motherhod bara");
+
   }
 }
