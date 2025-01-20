@@ -1,23 +1,50 @@
-// Create a class Student containing instance variables roll and name and a
-// parameterized constructor. Create two objects of that class from the main class
-// and print them (Hints: Override toString method of Object class).
- class Student {
-  int roll;
-  String name;
-  Student(int roll,String name){
-    this.roll=roll;
-    this.name=name;
+// Write a Java Program to implement the following:
+// Create a base class TwoD that contains two instance variable length and breadth
+// and a method area(). Three subclasses triangle, square and rectangle inherits the
+// base class TwoD and override the method area() according to their shape.
+class TwoD{
+  double length, breadth;
+  TwoD(double length, double breadth){
+    this.length=length;
+    this.breadth=breadth;
   }
-  public String toString(){
-    return "Roll no: "+roll+" Name: "+name;
+  double area(){
+    return length*breadth;
   }
 }
-public class Main {
+class Triangle extends TwoD{
+  Triangle(double length, double breadth){
+    super(length, breadth);
+  }
+  double area(){
+    return 0.5*length*breadth;
+  }
+}
+class Square extends TwoD{
+  Square(double length, double breadth){
+    super(length, breadth);
+  }
+  double area(){
+    return length*length;
+  }
+}
+class Rectangle extends TwoD{
+  Rectangle(double length,double breadth){
+    super(length, breadth);
+  }
+  double area(){
+    return length*breadth;
+  }
+}
+class Main{
   public static void main(String[] args) {
-    Student s1=new Student(1,"Rahul");
-    Student s2=new Student(2,"Romit");
-    System.out.println(s1.toString());
-    System.out.println(s2.toString());
+    Triangle t = new Triangle(10, 20);
+    Square s = new Square(10, 10);
+    Rectangle r = new Rectangle(10, 20);
+    System.out.println("Area of Triangle: "+t.area());
+    System.out.println("Area of Square: "+s.area());
+    System.out.println("Area of Rectangle: "+r.area());
+    
   }
-}
 
+}
